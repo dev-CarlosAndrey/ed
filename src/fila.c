@@ -2,19 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "fila.h"
+#include "utils.h"
 
 static Pedido* inicioFila = NULL;
 static Pedido* fimFila = NULL;
-
 static int proximoID = 1;
 
-void limparBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
-
 void adicionarPedido() {
-    Pedido* novo = (Pedido*)malloc(sizeof(Pedido));
+    Pedido* novo = malloc(sizeof(Pedido));
     if (!novo) {
         printf("Erro: memória insuficiente.\n");
         return;
@@ -23,21 +18,17 @@ void adicionarPedido() {
     novo->id = proximoID++;
     printf("\nID: %d\n", novo->id);
 
-    // Leitura do nome do prato com fgets  
-    limparBuffer(); // evita pular a leitura
+    limparBuffer();
+
     printf("Nome do prato: ");
     fgets(novo->prato, sizeof(novo->prato), stdin);
+    limparEnter(novo->prato);
 
-    // Remove o \n do final da string
-    novo->prato[strcspn(novo->prato, "\n")] = '\0';
-
-    // Ler número da mesa
     printf("Mesa: ");
     scanf("%d", &novo->mesa);
 
     novo->prox = NULL;
 
-    // Inserir na fila
     if (inicioFila == NULL) {
         inicioFila = fimFila = novo;
     } else {
@@ -49,7 +40,7 @@ void adicionarPedido() {
 }
 
 void entregarPedido() {
-    if (inicioFila == NULL) {
+    if (!inicioFila) {
         printf("\nNenhum pedido na fila.\n");
         return;
     }
@@ -61,18 +52,18 @@ void entregarPedido() {
     inicioFila = inicioFila->prox;
     free(temp);
 
-    if (inicioFila == NULL)
+    if (!inicioFila)
         fimFila = NULL;
 }
 
 void listarPedidos() {
-    if (inicioFila == NULL) {
+    if (!inicioFila) {
         printf("\nFila vazia.\n");
         return;
     }
 
-    printf("\n--- FILA DE PEDIDOS ---\n");
     Pedido* aux = inicioFila;
+    printf("\n--- FILA DE PEDIDOS ---\n");
 
     while (aux != NULL) {
         printf("ID: %d | Prato: %s | Mesa: %d\n",

@@ -2,19 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pilha.h"
+#include "utils.h" 
 
 Prato* topo = NULL;
-
-// Remove /n do fgets
-void limparEnter(char *str) {
-    str[strcspn(str, "\n")] = '\0';
-}
-
-// Limpa buffer - Scanf deixa um Enter pra trás. 
-void limparBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
 
 void receberPrato() {
     Prato* novo = (Prato*)malloc(sizeof(Prato));
