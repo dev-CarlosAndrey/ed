@@ -39,8 +39,7 @@ void removerInsumo() {
         return;
     }
 
-    // Mostrar a lista numerada antes de remover
-    printf("\n--- INSUMOS (com posições) ---\n");
+    printf("\n--- POSIÇÕES DOS INSUMOS ---\n");
     Insumo* auxList = lista;
     int index = 1;
 
