@@ -3,23 +3,41 @@
 #include <string.h>
 #include "fila.h"
 
-Pedido* inicioFila = NULL;
-Pedido* fimFila = NULL;
+static Pedido* inicioFila = NULL;
+static Pedido* fimFila = NULL;
+
+static int proximoID = 1;
+
+void limparBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
 
 void adicionarPedido() {
     Pedido* novo = (Pedido*)malloc(sizeof(Pedido));
+    if (!novo) {
+        printf("Erro: memória insuficiente.\n");
+        return;
+    }
 
-    printf("\nID do Pedido: ");
-    scanf("%d", &novo->id);
+    novo->id = proximoID++;
+    printf("\nID: %d\n", novo->id);
 
+    // Leitura do nome do prato com fgets  
+    limparBuffer(); // evita pular a leitura
     printf("Nome do prato: ");
-    scanf(" %[^\n]", novo->prato);
+    fgets(novo->prato, sizeof(novo->prato), stdin);
 
+    // Remove o \n do final da string
+    novo->prato[strcspn(novo->prato, "\n")] = '\0';
+
+    // Ler número da mesa
     printf("Mesa: ");
     scanf("%d", &novo->mesa);
 
     novo->prox = NULL;
 
+    // Inserir na fila
     if (inicioFila == NULL) {
         inicioFila = fimFila = novo;
     } else {
@@ -27,7 +45,7 @@ void adicionarPedido() {
         fimFila = novo;
     }
 
-    printf("Pedido adicionado!\n");
+    printf("Pedido adicionado com sucesso!\n");
 }
 
 void entregarPedido() {

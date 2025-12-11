@@ -5,14 +5,23 @@
 
 Insumo* lista = NULL;
 
+void limparEnter(char *str) {
+    str[strcspn(str, "\n")] = '\0';
+}
+
 void adicionarInsumo() {
     Insumo* novo = (Insumo*)malloc(sizeof(Insumo));
 
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+
     printf("\nNome do insumo: ");
-    scanf(" %[^\n]", novo->nome);
+    fgets(novo->nome, sizeof(novo->nome), stdin);
+    limparEnter(novo->nome);
 
     printf("Quantidade: ");
     scanf("%d", &novo->quantidade);
+    getchar();
 
     novo->prox = NULL;
 
@@ -37,6 +46,7 @@ void removerInsumo() {
     int pos;
     printf("\nPosição a remover: ");
     scanf("%d", &pos);
+    getchar();
 
     if (pos == 1) {
         Insumo* temp = lista;

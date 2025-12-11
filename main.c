@@ -16,13 +16,13 @@ int main() {
         printf("(1) Adicionar Pedido (Fila)\n");
         printf("(2) Entregar Pedido (Fila)\n");
         printf("(3) Receber Prato Sujo (Pilha)\n");
-        printf"(4) Lavar Prato (Pilha)\n");
-        printf"(5) Adicionar Insumo (Lista)\n");
-        printf"(6) Remover Insumo (Lista)\n");
-        printf"(7) Imprimir Pedidos\n");
-        printf"(8) Ver Pilha de Pratos\n");
-        printf"(9) Imprimir Lista de Ingredientes\n");
-        printf"(0) Sair\n");
+        printf("(4) Lavar Prato (Pilha)\n");
+        printf("(5) Adicionar Insumo (Lista)\n");
+        printf("(6) Remover Insumo (Lista)\n");
+        printf("(7) Imprimir Pedidos\n");
+        printf("(8) Ver Pilha de Pratos\n");
+        printf("(9) Imprimir Lista de Ingredientes\n");
+        printf("(0) Sair\n");
 
         printf("Escolha: ");
         scanf("%d", &opcao);

@@ -5,14 +5,27 @@
 
 Prato* topo = NULL;
 
+// Remove /n do fgets
+void limparEnter(char *str) {
+    str[strcspn(str, "\n")] = '\0';
+}
+
+// Limpa buffer - Scanf deixa um Enter pra trás. 
+void limparBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 void receberPrato() {
     Prato* novo = (Prato*)malloc(sizeof(Prato));
 
     printf("\nID do tipo do prato: ");
     scanf("%d", &novo->id_tipo);
+    limparBuffer();
 
     printf("Cor do prato: ");
-    scanf(" %[^\n]", novo->cor);
+    fgets(novo->cor, sizeof(novo->cor), stdin);
+    limparEnter(novo->cor);
 
     novo->prox = topo;
     topo = novo;
@@ -27,7 +40,9 @@ void lavarPrato() {
     }
 
     Prato* temp = topo;
+
     printf("\nLavando prato %d (%s)\n", temp->id_tipo, temp->cor);
+
     topo = topo->prox;
     free(temp);
 }
