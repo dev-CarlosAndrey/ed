@@ -39,8 +39,20 @@ void removerInsumo() {
         return;
     }
 
+    // Mostrar a lista numerada antes de remover
+    printf("\n--- INSUMOS (com posições) ---\n");
+    Insumo* auxList = lista;
+    int index = 1;
+
+    while (auxList != NULL) {
+        printf("%d) Nome: %s | Quantidade: %d\n",
+               index, auxList->nome, auxList->quantidade);
+        auxList = auxList->prox;
+        index++;
+    }
+
     int pos;
-    printf("\nPosição a remover: ");
+    printf("\nDigite a posição a remover: ");
     scanf("%d", &pos);
     limparBuffer();
 
@@ -68,6 +80,7 @@ void removerInsumo() {
 
     printf("Insumo removido!\n");
 }
+
 
 void listarInsumos() {
     if (lista == NULL) {

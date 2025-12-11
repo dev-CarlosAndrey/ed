@@ -13,12 +13,12 @@ int main() {
         printf("*** RESTAURANTE FPO ***\n");
         printf("***********************\n");
 
-        printf("(1) Adicionar Pedido (Fila)\n");
-        printf("(2) Entregar Pedido (Fila)\n");
-        printf("(3) Receber Prato Sujo (Pilha)\n");
-        printf("(4) Lavar Prato (Pilha)\n");
-        printf("(5) Adicionar Insumo (Lista)\n");
-        printf("(6) Remover Insumo (Lista)\n");
+        printf("(1) Adicionar Pedido \n"); //fila
+        printf("(2) Entregar Pedido \n");//fila
+        printf("(3) Receber Prato Sujo \n"); //pilha
+        printf("(4) Lavar Prato \n"); //pilha
+        printf("(5) Adicionar Insumo \n"); //lista
+        printf("(6) Remover Insumo \n"); //lista
         printf("(7) Imprimir Pedidos\n");
         printf("(8) Ver Pilha de Pratos\n");
         printf("(9) Imprimir Lista de Ingredientes\n");
